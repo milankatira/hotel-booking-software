@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import PaymentButton from "@/components/PaymentButton";
 
 interface BookingFormProps {
   onSubmit: (data: any) => void;
@@ -20,6 +21,7 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
   const [checkIn, setCheckIn] = useState<Date>();
   const [checkOut, setCheckOut] = useState<Date>();
   const [isLoading, setIsLoading] = useState(false);
+  const [bookingDetails, setBookingDetails] = useState<any>(null);
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -39,22 +41,40 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
         roomType: formData.get("roomType"),
       };
 
-      const response = await fetch('/api/bookings', {
+      setBookingDetails(data);
+    } catch (error) {
+      toast({
+        title: "Form Error",
+        description: "Please check your form details and try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handlePaymentSuccess = async (response: any) => {
+    try {
+      const res = await fetch('/api/bookings', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...bookingDetails,
+          paymentDetails: response
+        }),
       });
 
-      const result = await response.json();
+      const result = await res.json();
 
       if (result.success) {
         toast({
           title: "Booking Successful",
           description: "Your room has been booked successfully!",
         });
-        onSubmit(data);
+        onSubmit(bookingDetails);
+        setBookingDetails(null);
       } else {
         throw new Error(result.error || 'Failed to book room');
       }
@@ -64,9 +84,24 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
         description: "There was an error booking your room. Please try again.",
         variant: "destructive",
       });
-    } finally {
-      setIsLoading(false);
     }
+  };
+
+  const handlePaymentError = (error: any) => {
+    toast({
+      title: "Payment Failed",
+      description: "There was an error processing your payment. Please try again.",
+      variant: "destructive",
+    });
+  };
+
+  const calculateAmount = (roomType: string) => {
+    const prices: Record<string, number> = {
+      'standard': 5000,
+      'executive': 8000,
+      'suite': 12000
+    };
+    return prices[roomType] || 5000;
   };
 
   return (
@@ -154,9 +189,19 @@ export default function BookingForm({ onSubmit }: BookingFormProps) {
             <Input id="guests" name="guests" type="number" min="1" required />
           </div>
 
-          <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? "Processing..." : "Book Now"}
-          </Button>
+          <div className="flex justify-end">
+            {!bookingDetails ? (
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? "Processing..." : "Proceed to Payment"}
+              </Button>
+            ) : (
+              <PaymentButton 
+                amount={calculateAmount(bookingDetails.roomType)} 
+                onSuccess={handlePaymentSuccess}
+                onError={handlePaymentError}
+              />
+            )}
+          </div>
         </form>
       </CardContent>
     </Card>

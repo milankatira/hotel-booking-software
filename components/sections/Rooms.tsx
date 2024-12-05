@@ -1,5 +1,6 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const rooms = [
   {
@@ -50,7 +51,9 @@ export default function Rooms() {
                 <p className="text-muted-foreground">{room.description}</p>
               </CardContent>
               <CardFooter className="p-6 pt-0">
-                <Button className="w-full">Book Now</Button>
+                <Link href="/booking">
+                  <Button className="w-full">Book Now</Button>
+                </Link>
               </CardFooter>
             </Card>
           ))}
