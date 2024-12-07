@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Menu, X, Hotel } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,8 +23,9 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <Hotel className="h-8 w-8" />
-              <span className="ml-2 text-lg font-semibold">Luxury Hotel</span>
+              {/* <Hotel className="h-8 w-8" /> */}
+              <Image src='/logo.png' width={50} height={50} alt="logo" />
+              <span className="ml-2 text-lg font-semibold">Hotel Narayan Inn</span>
             </Link>
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">

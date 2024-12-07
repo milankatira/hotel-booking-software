@@ -6,19 +6,19 @@ const rooms = [
   {
     title: "Deluxe Suite",
     image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?ixlib=rb-4.0.3",
-    price: "$299",
+    price: "₹ 5000",
     description: "Spacious suite with city view",
   },
   {
     title: "Executive Room",
     image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3",
-    price: "$199",
+    price: "₹ 8000",
     description: "Modern comfort with dedicated workspace",
   },
   {
     title: "Family Suite",
     image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3",
-    price: "$399",
+    price: "₹ 12000",
     description: "Perfect for families, with connecting rooms",
   },
 ];

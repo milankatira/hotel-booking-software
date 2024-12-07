@@ -37,14 +37,14 @@ export default function Contact() {
                 <Mail className="h-6 w-6 mt-1" />
                 <div>
                   <h4 className="font-medium">Email</h4>
-                  <p className="text-muted-foreground">info@luxuryhotel.com</p>
+                  <p className="text-muted-foreground">hotelnarayaninn@gmail.com</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
                 <Phone className="h-6 w-6 mt-1" />
                 <div>
                   <h4 className="font-medium">Phone</h4>
-                  <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                  <p className="text-muted-foreground">+91 99999 55322</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -52,7 +52,7 @@ export default function Contact() {
                 <div>
                   <h4 className="font-medium">Address</h4>
                   <p className="text-muted-foreground">
-                    123 Luxury Avenue, Paradise City, PC 12345
+                    Opp. home guard office, Nr. dwarkadhish temple, dwarka - 361335
                   </p>
                 </div>
               </div>

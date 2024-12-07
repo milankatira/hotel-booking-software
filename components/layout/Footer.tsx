@@ -9,11 +9,11 @@ export default function Footer() {
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <Hotel className="h-6 w-6" />
-              <span className="text-lg font-bold">Luxury Hotel</span>
+              <span className="text-lg font-bold">Narayan Inn</span>
             </div>
             <p className="text-muted-foreground">
-              Experience luxury living at its finest with our world-class
-              accommodations and services.
+              Deserved to be happy
+              <br />HOTEL NARAYAN INN
             </p>
           </div>
 
@@ -78,7 +78,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t text-center text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Luxury Hotel. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Narayan Inn. All rights reserved.</p>
         </div>
       </div>
     </footer>

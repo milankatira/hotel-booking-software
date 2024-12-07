@@ -59,7 +59,7 @@ export default function PrivacyPolicyPage() {
                   <br />
                   Email: privacy@luxuryhotel.com
                   <br />
-                  Phone: +1 (555) 123-4567
+                  Phone: +91 99999 55322
                 </p>
               </section>
             </CardContent>
